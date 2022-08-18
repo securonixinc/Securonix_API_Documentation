@@ -1,54 +1,44 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/49111249-0a1a-4b5a-a3ab-45d00732fdb3/deploy-status)](https://app.netlify.com/sites/docuapi/deploys)
+# Securonix Documentation as Code
 
-**DocuAPI** is a beautiful multilingual API documentation theme for [Hugo](http://gohugo.io/). This theme is built on top of the beautiful work of [Robert Lord](https://github.com/lord) and others on the [Slate](https://github.com/slatedocs/slate) project ([Apache 2 License](https://github.com/slatedocs/slate/blob/master/LICENSE)). The JS part has recently been rewritten from Jquery to [AlpineJS](https://alpinejs.dev/).
+![alt text](https://www.securonix.com/wp-content/uploads/2021/12/thumbnail_logo2.jpg "Securonix Logo")
 
-<br/>
+This repository contains the Documentation for Securonix products and services.
 
-> Visit the [demo site](https://docuapi.netlify.com/).
+## To add new content:
 
-<br/>
+For adding new content to the Documentation base, please follow the steps listed below:
 
-![Screenshot DocuAPI Example site](https://raw.githubusercontent.com/bep/docuapi/master/images/screenshot.png)
+1. If you are accessing the repo for the first time, clone the main branch. If not, skip to step 2.
+<pre><code> git clone git@github.com:documentation-securonix/doc.git
+</code></pre>
+2. If you already have a local repo, pull the recent changes. 
+<pre><code> git pull origin main
+</code></pre>
 
-## Use
+### To add documentation in markdown format:
 
-Import the theme in your Hugo config:
+* Add a markdown file in the content/docs path in main branch to add your data. Refer to the [markdown syntax]
+* Add necessary content in the markdown file
+* Add images/gifs etc in the static folder
 
-```toml
-[[module.imports]]
-path = "github.com/bep/docuapi/v2"
-```
 
-Note, if you want the older jQuery-version, replace the path with `github.com/bep/docuapi`.
+[markdown syntax]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
-If you want to edit the SCSS styles, you need:
+### To add content from Confluence:
 
-* The extended Hugo version.
-* PostCSS CLI (run `npm install` to install requirements)
+* For the confluence page you want to publish in the documentation portal, get the following details:
+  * Page id ( securonix.atlassian.net/wiki/spaces/TD/pages/page-id-here/SamplePageName )
+  * Your Confluence username ( user@securonix.com)
+  * Your API token ( [Link on how to get this] )
+* Update this data in the script - PublishConfluence.py. Make sure the converted .md file gets generated in the content/docs path of the repository.
+* Run the script
 
-See the [exampleSite](https://github.com/bep/docuapi/tree/master/exampleSite) and more specific its site [configuration](https://github.com/bep/docuapi/blob/master/exampleSite/config.toml) for the available options.
+[Link on how to get this]: https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/
 
-**Most notable:** This theme will use all the (non drafts) pages in the site and build a single-page API documentation. Using `weight` in the page front matter is the easiest way to control page order.
-
-If you want a different page selection, please provide your own `layouts/index.html` template.
-
-You can customize the look-and-feel by adding your own CSS variables in `assets/scss/docuapi_overrides.scss`. See the exampleSite folder for an example.
-
-## Hooks
-
-You can override the layouts by providing some custom partials:
-
-* `partials/hook_head_end.html` is inserted right before the `head` end tag. Useful for additional styles etc.
-* `partials/hook_body_end.html` which should be clear by its name.
-* `partials/hook_left_sidebar_start.html` the start of the left sidebar
-* `partials/hook_left_sidebar_end.html` the end of the left sidebar
-* `partials/hook_left_sidebar_logo.html` the log `img` source
-
-The styles and Javascript import are also put in each partial and as such can be overridden if really needed:
-
-* `partials/styles.html`
-* `partials/js.html`
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/bep/docuapi.svg)](https://starchart.cc/bep/docuapi)
+3. Push your changes to the main branch
+<pre><code>git add .
+git commit -m "Add commit message"
+git remote add origin git@github.com:documentation-securonix/doc.git
+git push -u origin main
+</code></pre>
+4. After a few minutes, the information you added would be automatically reflected in the Documentation website
